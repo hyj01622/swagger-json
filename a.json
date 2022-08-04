@@ -1,0 +1,73 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "bigtree",
+    "version": "1.0.0",
+    "title": "Swagger Petstore"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:4303/"
+    }
+  ],
+  "tags": [
+    { "name": "user", "description": "user api" },
+    { "name": "email", "description": "email api" }
+  ],
+  "paths": {
+    "/user/signup": {
+      "$ref": "src/swagger/post.json#/post"
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "Bearer": {
+        "type": "apiKey",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "Success": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "data": {
+            "type": "object"
+          }
+        }
+      },
+      "Signup": {
+        "type": "object",
+        "properties": {
+          "user_id": { "type": "string" },
+          "biz_reg_no": { "type": "integer" },
+          "user_pw": { "type": "string" },
+          "biz_nm": { "type": "string" },
+          "biz_addr": { "type": "string" }
+        }
+      },
+      "SignupComplete": {
+        "type": "object",
+        "properties": {
+          "user_no": { "type": "integer", "minimum": 1 },
+          "user_id": { "type": "string" },
+          "biz_nm": { "type": "string" },
+          "biz_id": { "type": "string" },
+          "biz_reg_no": { "type": "integer" },
+          "biz_addr": { "type": "string" },
+          "reg_dt": { "type": "string", "format": "date-time" },
+          "pw_reg_dt": { "type": "string", "format": "date-time" },
+          "login_dt": { "type": "string", "format": "date-time" }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
+}
